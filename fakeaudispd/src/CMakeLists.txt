@@ -26,5 +26,5 @@ target_link_libraries(fakeaudispd PRIVATE common)
 
 install(TARGETS
     fakeaudispd
-    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/release/bin
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )

@@ -26,5 +26,5 @@ target_link_libraries(file2sock PRIVATE common)
 
 install(TARGETS
     file2sock
-    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/release/bin
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )

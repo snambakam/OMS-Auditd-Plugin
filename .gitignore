@@ -27,3 +27,8 @@ build/fakeaudispd/
 build/file2sock/
 build/generated/
 build/testreceiver/
+build/Makefile
+build/staging
+build/install_manifest.txt
+
+

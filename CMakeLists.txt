@@ -69,3 +69,28 @@ add_subdirectory(auomscollect/src)
 add_subdirectory(file2sock/src)
 add_subdirectory(fakeaudispd/src)
 add_subdirectory(testreceiver/src)
+
+include(GNUInstallDirs)
+
+install(FILES
+  LICENSE
+  THIRD_PARTY_IP_NOTICE
+  DESTINATION "."
+)
+install(FILES
+  installer/conf/auoms.conf
+  installer/conf/auomscollect.conf
+  installer/conf/example_output.conf
+  installer/conf/example_redact.conf
+  DESTINATION ${CMAKE_INSTALL_SYSCONFDIR}
+)
+install(FILES
+  installer/auoms.init
+  installer/auoms.service
+  DESTINATION "."
+)
+install(FILES
+  installer/selinux/auoms.fc
+  installer/selinux/auoms.te
+  DESTINATION ${CMAKE_INSTALL_DATADIR}
+)

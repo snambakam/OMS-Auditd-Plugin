@@ -23,3 +23,17 @@ target_include_directories(auomsctl PUBLIC
     ${GENERATED_INCLUDE_DIR}
 )
 target_link_libraries(auomsctl PRIVATE common)
+
+if(CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
+    ADD_CUSTOM_COMMAND(TARGET auomsctl POST_BUILD
+        COMMAND ${CMAKE_OBJCOPY} --only-keep-debug $<TARGET_FILE:auomsctl> ${CMAKE_BINARY_DIR}/auomsctl.dbg
+        COMMAND ${CMAKE_STRIP} -g $<TARGET_FILE:auomsctl>
+        COMMAND ${CMAKE_OBJCOPY} --add-gnu-debuglink=auomsctl.dbg $<TARGET_FILE:auomsctl>
+    )
+    install(FILES ${CMAKE_BINARY_DIR}/auomsctl.dbg DESTINATION ${CMAKE_BINARY_DIR}/release/bin)
+endif(CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
+
+install(TARGETS
+    auomsctl
+    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/release/bin
+)

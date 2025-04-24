@@ -23,3 +23,8 @@ target_include_directories(testreceiver PUBLIC
     ${CMAKE_BINARY_DIR}
 )
 target_link_libraries(testreceiver PRIVATE common)
+
+install(TARGETS
+    testreceiver
+    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/release/bin
+)

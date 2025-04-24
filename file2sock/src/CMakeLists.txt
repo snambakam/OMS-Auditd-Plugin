@@ -23,3 +23,8 @@ target_include_directories(file2sock PUBLIC
     ${CMAKE_BINARY_DIR}
 )
 target_link_libraries(file2sock PRIVATE common)
+
+install(TARGETS
+    file2sock
+    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/release/bin
+)

@@ -56,3 +56,17 @@ add_test(SPSCDataQueueTests ${CMAKE_BINARY_DIR}/SPSCDataQueueTests
     --log_sink=SPSCDataQueueTests.log
     --report_sink=SPSCDataQueueTests.report
 )
+
+if(CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
+    ADD_CUSTOM_COMMAND(TARGET auomscollect POST_BUILD
+        COMMAND ${CMAKE_OBJCOPY} --only-keep-debug $<TARGET_FILE:auomscollect> ${CMAKE_BINARY_DIR}/auomscollect.dbg
+        COMMAND ${CMAKE_STRIP} -g $<TARGET_FILE:auomscollect>
+        COMMAND ${CMAKE_OBJCOPY} --add-gnu-debuglink=auomscollect.dbg $<TARGET_FILE:auomscollect>
+    )
+    install(FILES ${CMAKE_BINARY_DIR}/auomscollect.dbg DESTINATION ${CMAKE_BINARY_DIR}/release/bin)
+endif(CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
+
+install(TARGETS
+    auomscollect
+    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/release/bin
+)

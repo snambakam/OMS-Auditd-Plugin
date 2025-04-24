@@ -60,3 +60,17 @@ add_test(OutputInputTests
     --log_sink=OutputInputTests.log
     --report_sink=OutputInputTests.report
 )
+
+if(CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
+    ADD_CUSTOM_COMMAND(TARGET auoms POST_BUILD
+        COMMAND ${CMAKE_OBJCOPY} --only-keep-debug $<TARGET_FILE:auoms> ${CMAKE_BINARY_DIR}/auoms.dbg
+        COMMAND ${CMAKE_STRIP} -g $<TARGET_FILE:auoms>
+        COMMAND ${CMAKE_OBJCOPY} --add-gnu-debuglink=auoms.dbg $<TARGET_FILE:auoms>
+    )
+    install(FILES ${CMAKE_BINARY_DIR}/auoms.dbg DESTINATION ${CMAKE_BINARY_DIR}/release/bin)
+endif(CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
+
+install(TARGETS
+    auoms
+    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/release/bin
+)

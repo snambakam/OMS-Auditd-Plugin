@@ -19,3 +19,11 @@ env_config.h
 /.vscode/
 /.vs
 /out/build/x64-Debug
+build/auoms/
+build/auomscollect/
+build/auomsctl/
+build/common/
+build/fakeaudispd/
+build/file2sock/
+build/generated/
+build/testreceiver/

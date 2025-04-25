@@ -26,5 +26,5 @@ target_link_libraries(testreceiver PRIVATE common)
 
 install(TARGETS
     testreceiver
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    RUNTIME DESTINATION bin
 )

@@ -75,7 +75,7 @@ include(GNUInstallDirs)
 install(FILES
   LICENSE
   THIRD_PARTY_IP_NOTICE
-  DESTINATION "."
+  DESTINATION ${CMAKE_INSTALL_PREFIX}
 )
 install(FILES
   installer/conf/auoms.conf
@@ -87,10 +87,30 @@ install(FILES
 install(FILES
   installer/auoms.init
   installer/auoms.service
-  DESTINATION "."
+  DESTINATION ${CMAKE_INSTALL_PREFIX}
 )
 install(FILES
   installer/selinux/auoms.fc
   installer/selinux/auoms.te
   DESTINATION ${CMAKE_INSTALL_DATADIR}
 )
+
+#
+# Get Project version
+#
+#file(STRINGS "${CMAKE_SOURCE_DIR}/build/auoms.version" VERSION_LINES)
+#foreach(line IN LISTS VERSION_LINES)
+#    if(line MATCHES "^AUOMS_BUILDVERSION_MAJOR=([0-9]+)")
+#        set(AUOMS_VERSION_MAJOR "${CMAKE_MATCH_1}")
+#    elseif(line MATCHES "^AUOMS_BUILDVERSION_MINOR=([0-9]+)")
+#        set(AUOMS_VERSION_MINOR "${CMAKE_MATCH_1}")
+#    elseif(line MATCHES "^AUOMS_BUILDVERSION_PATCH=([0-9]+)")
+#        set(AUOMS_VERSION_PATCH "${CMAKE_MATCH_1}")
+#    elseif(line MATCHES "^AUOMS_BUILDVERSION_BUILDNR=([0-9]+)")
+#        set(AUOMS_VERSION_BUILDNR "${CMAKE_MATCH_1}")
+#    endif()
+#endforeach()
+#
+#set(AUOMS_VERSION 
+#  "${AUOMS_VERSION_MAJOR}.${AUOMS_VERSION_MINOR}.${AUOMS_VERSION_PATCH}"
+#)

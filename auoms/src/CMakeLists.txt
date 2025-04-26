@@ -17,6 +17,7 @@
 add_executable(auoms
     AuditRulesMonitor.cpp
     auoms.cpp
+    AuomsConfig.cpp
     CollectionMonitor.cpp
     EventFilter.cpp
     Inputs.cpp
